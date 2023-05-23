@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="WebAutomationJakpat" />
+        <module name="MusicLab-QE-WebTesting" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="WebAutomationJakpat" target="15" />
+      <module name="Photos" target="15" />
+      <module name="TesJakpat" target="15" />
     </bytecodeTargetLevel>
   </component>
 </project>
