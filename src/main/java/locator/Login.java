@@ -1,5 +1,6 @@
 package locator;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +12,22 @@ public class Login {
     public Login(WebDriver driver){
         PageFactory.initElements(driver, this);
         Login.driver = driver;
+    }
+
+    @FindBy(xpath = "//button[@class='navbar-toggle btn-menu']")
+    private WebElement dropDown;
+    public void setDropDown(){
+        dropDown.click();
+    }
+
+    @FindBy(xpath = "//a[.='Login']")
+    private WebElement loginButton;
+    public void setLoginButton(){
+        loginButton.click();
+    }
+    public boolean verifyLoginPage(){
+        username.isDisplayed();
+        return true;
     }
 
     @FindBy(xpath = "//input[@name='member[username]']")
@@ -32,11 +49,27 @@ public class Login {
     }
 
     @FindBy(xpath = "//img[@src='https://jakpat.net/bracket/css/images/minilogo.png']")
-    private WebElement successLogin;
-    public boolean setSuccessLogin() {
-        successLogin.isDisplayed();
+    private WebElement verifySuccessLogin;
+    public boolean setVerifySuccessLogin() {
+        verifySuccessLogin.isDisplayed();
         return true;
     }
+
+//    @FindBy(css = ".alert")
+//    private WebElement verifyFailedLogin;
+    @FindBy(xpath = "//div[@class='alert alert-danger']")
+    private WebElement verifyFailedLogin;
+    public String setVerifyFailedLogin(){
+        return verifyFailedLogin.getText();
+    }
+
+    @FindBy(xpath = "//div[@class='alert alert-danger']")
+    private WebElement verifyFailedLogin2;
+    public boolean setVerifyFailedLogin2(){
+        return verifyFailedLogin2.isDisplayed();
+    }
+
+
 
 
 }

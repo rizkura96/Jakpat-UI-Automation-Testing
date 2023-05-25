@@ -11,12 +11,19 @@ import org.openqa.selenium.WebDriver;
 public class LoginSteps {
     private final WebDriver webDriver;
 
-    public LoginSteps(){
+    public LoginSteps() {
         super();
         this.webDriver = Hooks.webDriver;
     }
+
     @Given("User already on login page")
-    public void userAlreadyOnLoginPage() {
+    public void userAlreadyOnLoginPage() throws InterruptedException {
+        Login login = new Login(webDriver);
+        login.setDropDown();
+        Thread.sleep(1000);
+        login.setLoginButton();
+        Thread.sleep(1000);
+        Assert.assertTrue(login.verifyLoginPage());
     }
 
     @When("User input {string} as username and {string} as password")
@@ -29,7 +36,7 @@ public class LoginSteps {
     }
 
     @And("User clik Sign In button")
-    public void userClikSignInButton()throws InterruptedException {
+    public void userClikSignInButton() throws InterruptedException {
         Login login = new Login(webDriver);
         login.setSignIn();
         Thread.sleep(3000);
@@ -38,6 +45,19 @@ public class LoginSteps {
     @Then("The page will be directed to main page of Jakpat")
     public void thePageWillBeDirectedToMainPageOfJakpat() {
         Login login = new Login(webDriver);
-        Assert.assertTrue(login.setSuccessLogin());
+        Assert.assertTrue(login.setVerifySuccessLogin());
+    }
+
+
+    @Then("User failed login and a login failure pop up {string} will appear")
+    public void userFailedLoginAndALoginFailurePopUpWillAppear(String errorText) {
+        Login login = new Login(webDriver);
+        Assert.assertEquals(errorText,login.setVerifyFailedLogin());
+    }
+
+    @Then("User failed login and a login failure pop up will appear")
+    public void userFailedLoginAndALoginFailurePopUpWillAppear() {
+        Login login = new Login(webDriver);
+        Assert.assertTrue(login.setVerifyFailedLogin2());
     }
 }

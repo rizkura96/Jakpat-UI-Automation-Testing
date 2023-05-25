@@ -16,7 +16,7 @@ public class Hooks {
         ChromeOptions co =new ChromeOptions();
         co.addArguments("--start-maximized");
         webDriver = new ChromeDriver(co);
-        String appUrl = "https://jakpat.net/login";
+        String appUrl = "https://jakpat.net/";
         webDriver.get(appUrl);
     }
 
